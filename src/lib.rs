@@ -188,7 +188,10 @@ impl AiCtx {
             })
             .collect::<Result<Vec<_>>>()?;
 
+        println!("tokens:");
         let token_ids = Tensor::stack(&token_ids, 0)?;
+        println!("{}", token_ids);
+        println!("");
         let token_type_ids = token_ids.zeros_like()?;
 
         let ys = self.model.forward(&token_ids, &token_type_ids)?;
